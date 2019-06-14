@@ -33,7 +33,16 @@ const getDateil = (id) => {
   ]
 }
 
+// 新增一篇博客   blogData = {}表示blogData为空的话，就给一个空对象
+const postNewBlog = (blogData = {}) => {
+  // blogData 是一个object，包含title、content、属性
+  return {
+    id: 3
+  }
+}
+
 module.exports = {
   getList,
-  getDateil
+  getDateil,
+  postNewBlog
 }

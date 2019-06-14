@@ -1,4 +1,4 @@
-const { getList, getDateil } = require('../controller/blog')
+const { getList, getDateil, postNewBlog } = require('../controller/blog')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
 const handleBlogRouter = (req, res) => {
@@ -22,9 +22,8 @@ const handleBlogRouter = (req, res) => {
 
   // 新增一篇博客
   if(method === 'POST' && req.path === '/api/blog/new') {
-    return {
-      msg: '新增一篇博客 接口'
-    }
+    const data = postNewBlog(req.body)
+    return new SuccessModel(data)
   }
 
   // 更新一篇博客

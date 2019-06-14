@@ -26,8 +26,6 @@ const getPostData = (req) => {
       }
       resolve(JSON.parse(postData))
     })
-
-
   })
   return promise
 }
@@ -46,6 +44,7 @@ const serverHandle = (req, res) => {
   // 处理 post data
   getPostData(req).then(postData => {
     req.body = postData
+    console.log('getPostData req.body--->', req)
 
     // 处理 blog 路由
     const blogData = handleBlogRouter(req, res)
