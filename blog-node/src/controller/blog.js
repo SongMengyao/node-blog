@@ -41,8 +41,24 @@ const postNewBlog = (blogData = {}) => {
   }
 }
 
+ // 更新一篇博客
+ const postUpdateBlog = (id, blogData = {}) => {
+   // id 是被更新的博客的id
+   // blogData 是一个object，包含title、content、属性
+   console.log('update id blogData-->', id, blogData)
+   return true
+ }
+
+ // 删除一篇博客
+ const postDelBlog = (id) => {
+   // id 是被删除的博客的id
+   return true
+ }
+
 module.exports = {
   getList,
   getDateil,
-  postNewBlog
+  postNewBlog,
+  postUpdateBlog,
+  postDelBlog
 }

@@ -10,7 +10,7 @@ const getPostData = (req) => {
       return
     }
 
-    if(req.headers['Content-Type'] !== 'application/json') {
+    if(req.headers['content-type'] !== 'application/json') {
       resolve({})
       return
     }
@@ -44,8 +44,7 @@ const serverHandle = (req, res) => {
   // 处理 post data
   getPostData(req).then(postData => {
     req.body = postData
-    console.log('getPostData req.body--->', req)
-
+  
     // 处理 blog 路由
     const blogData = handleBlogRouter(req, res)
     if(blogData) {
