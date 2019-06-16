@@ -17,7 +17,7 @@ const getList = (author, keyword) => {
 
 // 获取博客详情
 const getDateil = (id) => {
-  let sql = `select * from blogs where id=${id}`
+  let sql = `select * from blogs where id=${id};`
 
   return exec(sql).then(itemBlog => {
     return itemBlog
@@ -33,7 +33,7 @@ const postNewBlog = (blogData = {}) => {
   const createtime = Date.now()
   let sql = `
     insert into blogs (title, content, author, createtime)
-    values ('${title}', '${content}', '${author}', ${createtime})
+    values ('${title}', '${content}', '${author}', ${createtime});
   `
   return exec(sql).then(newData => {
     return {
@@ -44,16 +44,31 @@ const postNewBlog = (blogData = {}) => {
 
  // 更新一篇博客
  const postUpdateBlog = (id, blogData = {}) => {
-   // id 是被更新的博客的id
-   // blogData 是一个object，包含title、content、属性
-   console.log('update id blogData-->', id, blogData)
-   return true
+  // id 是被更新的博客的id
+  // blogData 是一个object，包含title、content属性
+  const title = blogData.title
+  const content = blogData.content
+  let sql = `
+    update blogs set title='${title}', content='${content}' where id=${id};
+  `
+  return exec(sql).then(updateData => {
+    if(updateData.affectedRows > 0) {
+      return true
+    }
+    return false
+  })
  }
 
  // 删除一篇博客
- const postDelBlog = (id) => {
+ const postDelBlog = (id, author) => {
    // id 是被删除的博客的id
-   return true
+   let sql = `delete from blogs where id=${id} and author='${author}'`
+   return exec(sql).then(delData => {
+     if(delData.affectedRows > 0) {
+       return true
+     }
+     return false
+   })
  }
 
 module.exports = {
