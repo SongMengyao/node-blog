@@ -17,24 +17,29 @@ const getList = (author, keyword) => {
 
 // 获取博客详情
 const getDateil = (id) => {
-  // 先返回假数据，但是格式是正确的
-  return [
-    {
-      id: 1,
-      title: '标题A',
-      content: '内容A',
-      createTime: 1560442317407,
-      author: 'zhangsan'
-    }
-  ]
+  let sql = `select * from blogs where id=${id}`
+
+  return exec(sql).then(itemBlog => {
+    return itemBlog
+  })
 }
 
 // 新增一篇博客   blogData = {}表示blogData为空的话，就给一个空对象
 const postNewBlog = (blogData = {}) => {
-  // blogData 是一个object，包含title、content、属性
-  return {
-    id: 3
-  }
+  // blogData 是一个object，包含title、content、author, createtime属性
+  const title = blogData.title
+  const content = blogData.content
+  const author = blogData.author
+  const createtime = Date.now()
+  let sql = `
+    insert into blogs (title, content, author, createtime)
+    values ('${title}', '${content}', '${author}', ${createtime})
+  `
+  return exec(sql).then(newData => {
+    return {
+      id: newData.insertId
+    }
+  })
 }
 
  // 更新一篇博客

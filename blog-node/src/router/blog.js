@@ -24,14 +24,20 @@ const handleBlogRouter = (req, res) => {
 
   // 获取博客详情
   if(method === 'GET' && req.path === '/api/blog/detail') {
-    const detailData = getDateil(id)
-    return new SuccessModel(detailData)
+    const result = getDateil(id)
+    return result.then(detailData => {
+      return new SuccessModel(detailData)
+    })
   }
 
   // 新增一篇博客
   if(method === 'POST' && req.path === '/api/blog/new') {
-    const data = postNewBlog(req.body)
-    return new SuccessModel(data)
+    req.body.author = 'songmengyao' // 假数据
+
+    const result = postNewBlog(req.body)
+    return result.then(newData => {
+      return new SuccessModel(newData)
+    })
   }
 
   // 更新一篇博客
