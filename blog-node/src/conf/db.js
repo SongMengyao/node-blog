@@ -1,7 +1,7 @@
 const env = process.env.NODE_ENV  // 环境变量
 
 // 配置
-const MYSQL_CONF
+let MYSQL_CONF
 if(env === 'dev') {
   MYSQL_CONF = {
     host: 'localhost',
@@ -12,7 +12,7 @@ if(env === 'dev') {
   }
 }
 
-if(env === 'prodcution') {
+if(env === 'production') {
   MYSQL_CONF = {
     host: 'localhost',
     user: 'root',

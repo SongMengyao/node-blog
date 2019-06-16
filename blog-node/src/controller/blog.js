@@ -1,22 +1,18 @@
+const { exec } = require('../db/mysql')
+
 // 获取博客列表
 const getList = (author, keyword) => {
-  // 先返回假数据，但是格式是正确的
-  return [
-    {
-      id: 1,
-      title: '标题A',
-      content: '内容A',
-      createTime: 1560442317407,
-      author: 'zhangsan'
-    },
-    {
-      id: 2,
-      title: '标题B',
-      content: '内容B',
-      createTime: 1560442329201,
-      author: 'lisi'
-    }
-  ]
+  let sql = 'select * from blogs where 1=1 '
+  if(author) {
+    sql += `and author='${author}' `
+  }
+  if(keyword) {
+    sql += `and title like '%${keyword}%' `
+  }
+  sql += 'order by createtime desc;'
+  
+  // 返回 promise
+  return exec(sql)
 }
 
 // 获取博客详情
