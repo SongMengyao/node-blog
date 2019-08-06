@@ -1,0 +1,3 @@
+- 初始化项目：npm init -y
+- 安装mysql依赖：npm i mysql --save
+- 启动项目：node index

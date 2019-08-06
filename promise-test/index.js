@@ -50,4 +50,4 @@ getFileContent('a.json').then(aData => {
   console.log('c data---->', cData)
 })
 
-// async await
+// async await  koa2中使用

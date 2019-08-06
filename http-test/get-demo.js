@@ -15,4 +15,4 @@ const server = http.createServer((req, res) => {
 
 server.listen(3002)
 
-console.log("app running at 3000 port !")
+console.log("app running at 3002 port !")
